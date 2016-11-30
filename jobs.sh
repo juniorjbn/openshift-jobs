@@ -10,6 +10,8 @@
 #
 # 3. Pegar nome de um secret do novo service account
 #   $ SECRET_NAME=`oc get secrets -n $NAMESPACE | awk '/^${DEPLOYMENTCONFIG}-token/{print $1; exit}'`
+#   or
+#   $ SECRET_NAME=`oc get secrets -n $NAMESPACE | grep ^$DEPLOYMENTCONFIG-token | head -n1 | awk '{print $1}'`
 #
 # 4. Montar o secret dentro do container
 #   $ oc volumes dc/$DEPLOYMENTCONFIG --add -m /etc/secrets --secret-name $SECRET_NAME
